@@ -1,0 +1,84 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "MQTT D1 Mini LED Matrix Display\n\n\nJune 2019 LeRoy Miller  \n\n\nThe original sketch was found here:  \nSmarte Display Box by Notagenius  \nhttps://www.thingiverse.com/thing:3369864/files  \nWhich uses a single LED Matrix board, and a ESP8266 (D1 Mini)  \nI was looking for a box that would hold the D1 Mini, and the Wemos  \nLED Matrix shield, which is a small 8x8 matrix that sits on top of  \nthe D1 Mini.  The Box didn't work for my needs, but I found the sketch\nwould.\n\nI modified it to use a 32x8 LED Matrix, using google translate  \ntranslated it to mostly English, Added the WiFiManager so that it  \nis easy to move to different locations.  \nAdded Over the Air updates, and a configuration file saved in SPIFFS  \nalso added a smile, and sad face, and change how the image is displayed   \nslightly, also added a NTP Clock.   \nMost of these are from the examples in provided by the ESP8266 board core.\n\nI found this case that works for the 32x8 Matrix and D1 Mini  \nhttps://www.thingiverse.com/thing:2867294  \nMine printed a little small, and I needed to sand the LED Matrix to get it to  \nfit, but it's a tight fit, and shouldn't cause a problem.\n\nInformation on setting up SPIFFS can be found here:  \nhttps://www.youtube.com/watch?v=jIOTzaeh7fs  \nhttps://github.com/esp8266/arduino-esp8266fs-plugin/releases\n\nThe only line that needs changed in the sketch is for the TIMEOFFSET  \ncurrently set for Eastern time zone, United State.  \nSetup your config.json file, upload using the information found in the   \nSPIFFS tutorial above.  \nThen upload the sketch to your D1 Mini with a flash size of 4m(3m spiffs)  \nwhich should be more than needed.  \nOnce it's uploaded, you should be able to upload a new config.json and   \nnew firmware over the air as/if needed.\n\n\n\nInstallation\n\n\nThings To Do\n\n\nTIMEOFFSET needs to be moved to the config.json file.\n\n\n SSID, and Password could also be moved to config.json file and WifiManager could be replaced with a more traditional way to connect to the internet. No plans to do this on my part. \n\nSketch sets up a website, but contains no contain, and isn't used, this could change.  \n\n\nUsage\n\n\nConnects to a MQTT of your choice (see config.json file in the data directory),\nand sends status updates to the topic:\n\n\"tele/{mqttname}/POWER\"\n\nit subscribes to the topics:\n\n\"cmnd/{mqttname}/MESSAGE\" used to display messages on the screen.\n\"cmnd/{mqttname}/IMAGE\" used to display simple images or images and messages\n\n        The format for sending a image and a message is:\n\n            \"imagename,this is a message\"\n\n\"cmnd/{mqttname}/IMAGE_RAW\" which is used to set a binary string to display a image that isn't already in the sketch.\n\n    example: mosquitto_pub -h broker.hivemq.com -t \"cmnd/{mqttname}/IMAGE_RAW\" -m \"0011110001000010101001011000000110100101100110010100001000111100\"\n\nIMAGE Names:\n\"home\", \"bell\", \"fire\", \"mail\", \"wash\", \"yes\", \"no\", \"smile\", \"sad\"\n\n    example: mosquitto_pub -h broker.hivemq.com -t \"cmnd/{mqttname}/IMAGE\" -m \"mail\"\n\n    or mosquitto_pub -h broker.hivemq.com -t \"cmnd/LeRoy/IMAGE\" -m \"mail,Package at front door\"  \n\n\nContributing\n\n\n\n\nFork it!\n\n\nCreate your feature branch: \ngit checkout -b my-new-feature\n\n\nCommit your changes: \ngit commit -am 'Add some feature'\n\n\nPush to the branch: \ngit push origin my-new-feature\n\n\nSubmit a pull request\n\n\n\n\nSupport Me\n\n\nIf you find this or any of my projects useful or enjoyable please support me.\n\nAnything I do get goes to buy more parts and make more/better projects.\n\nhttps://www.patreon.com/kd8bxp\n\nhttps://ko-fi.com/lfmiller\n\nhttps://www.paypal.me/KD8BXP  \n\n\nOther Projects\n\n\nhttps://www.youtube.com/channel/UCP6Vh4hfyJF288MTaRAF36w\n\nhttps://kd8bxp.blogspot.com/  \n\n\nCredits\n\n\nSmarte Display Box by Notagenius and others (esp8266 examples)\n\nI'm only taking credit for expanding on this sketch, not for the sketch.  \n\n\nLicense\n\n\nThis program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.\n\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses>",
+            "title": "General Information"
+        },
+        {
+            "location": "/#mqtt-d1-mini-led-matrix-display",
+            "text": "June 2019 LeRoy Miller    The original sketch was found here:  \nSmarte Display Box by Notagenius  \nhttps://www.thingiverse.com/thing:3369864/files  \nWhich uses a single LED Matrix board, and a ESP8266 (D1 Mini)  \nI was looking for a box that would hold the D1 Mini, and the Wemos  \nLED Matrix shield, which is a small 8x8 matrix that sits on top of  \nthe D1 Mini.  The Box didn't work for my needs, but I found the sketch\nwould.\n\nI modified it to use a 32x8 LED Matrix, using google translate  \ntranslated it to mostly English, Added the WiFiManager so that it  \nis easy to move to different locations.  \nAdded Over the Air updates, and a configuration file saved in SPIFFS  \nalso added a smile, and sad face, and change how the image is displayed   \nslightly, also added a NTP Clock.   \nMost of these are from the examples in provided by the ESP8266 board core.\n\nI found this case that works for the 32x8 Matrix and D1 Mini  \nhttps://www.thingiverse.com/thing:2867294  \nMine printed a little small, and I needed to sand the LED Matrix to get it to  \nfit, but it's a tight fit, and shouldn't cause a problem.\n\nInformation on setting up SPIFFS can be found here:  \nhttps://www.youtube.com/watch?v=jIOTzaeh7fs  \nhttps://github.com/esp8266/arduino-esp8266fs-plugin/releases\n\nThe only line that needs changed in the sketch is for the TIMEOFFSET  \ncurrently set for Eastern time zone, United State.  \nSetup your config.json file, upload using the information found in the   \nSPIFFS tutorial above.  \nThen upload the sketch to your D1 Mini with a flash size of 4m(3m spiffs)  \nwhich should be more than needed.  \nOnce it's uploaded, you should be able to upload a new config.json and   \nnew firmware over the air as/if needed.",
+            "title": "MQTT D1 Mini LED Matrix Display"
+        },
+        {
+            "location": "/#installation",
+            "text": "",
+            "title": "Installation"
+        },
+        {
+            "location": "/#things-to-do",
+            "text": "TIMEOFFSET needs to be moved to the config.json file.   SSID, and Password could also be moved to config.json file and WifiManager could be replaced with a more traditional way to connect to the internet. No plans to do this on my part.  \nSketch sets up a website, but contains no contain, and isn't used, this could change.",
+            "title": "Things To Do"
+        },
+        {
+            "location": "/#usage",
+            "text": "Connects to a MQTT of your choice (see config.json file in the data directory),\nand sends status updates to the topic: \n\"tele/{mqttname}/POWER\" \nit subscribes to the topics: \n\"cmnd/{mqttname}/MESSAGE\" used to display messages on the screen.\n\"cmnd/{mqttname}/IMAGE\" used to display simple images or images and messages \n        The format for sending a image and a message is: \n            \"imagename,this is a message\" \n\"cmnd/{mqttname}/IMAGE_RAW\" which is used to set a binary string to display a image that isn't already in the sketch. \n    example: mosquitto_pub -h broker.hivemq.com -t \"cmnd/{mqttname}/IMAGE_RAW\" -m \"0011110001000010101001011000000110100101100110010100001000111100\" \nIMAGE Names:\n\"home\", \"bell\", \"fire\", \"mail\", \"wash\", \"yes\", \"no\", \"smile\", \"sad\" \n    example: mosquitto_pub -h broker.hivemq.com -t \"cmnd/{mqttname}/IMAGE\" -m \"mail\" \n    or mosquitto_pub -h broker.hivemq.com -t \"cmnd/LeRoy/IMAGE\" -m \"mail,Package at front door\"",
+            "title": "Usage"
+        },
+        {
+            "location": "/#contributing",
+            "text": "Fork it!  Create your feature branch:  git checkout -b my-new-feature  Commit your changes:  git commit -am 'Add some feature'  Push to the branch:  git push origin my-new-feature  Submit a pull request",
+            "title": "Contributing"
+        },
+        {
+            "location": "/#support-me",
+            "text": "If you find this or any of my projects useful or enjoyable please support me. \nAnything I do get goes to buy more parts and make more/better projects. \nhttps://www.patreon.com/kd8bxp \nhttps://ko-fi.com/lfmiller \nhttps://www.paypal.me/KD8BXP",
+            "title": "Support Me"
+        },
+        {
+            "location": "/#other-projects",
+            "text": "https://www.youtube.com/channel/UCP6Vh4hfyJF288MTaRAF36w \nhttps://kd8bxp.blogspot.com/",
+            "title": "Other Projects"
+        },
+        {
+            "location": "/#credits",
+            "text": "Smarte Display Box by Notagenius and others (esp8266 examples) \nI'm only taking credit for expanding on this sketch, not for the sketch.",
+            "title": "Credits"
+        },
+        {
+            "location": "/#license",
+            "text": "This program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.  This program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses>",
+            "title": "License"
+        },
+        {
+            "location": "/door/",
+            "text": "The Door Bell Example\n\n\nFor the door bell we are using a Wemos D1 Mini, a Button Shield, and a Buzzer shield.\n\nOptional (sorta), a Lipo Battery and Lipo charging shield.\n\nIf you were to deploy this for a real project you may want to choose a different power source, or batteries that are replacable.  \n\n\nThe operation of the door bell is pretty simple, once setup, the door bell will connect to your MQTT broker, announce that it's online, and wait for the button to be pushed.  \n\n\nIf all goes well, when you hit the button a message will be displayed on your LED matrix.  \n\n\nIF the batteries die, or power is removed, after a short time, the MQTT Broker will send the  last will and testament message, in this case it's \"Door Bell Off Line\".  \n\n\nWe are still using the SPIFFS file system, and a config.json file, in this case the file is the same as for the display.  It works more or less the same way.  \n\n\nThe host name is hard written in the code, this probably should be changed.  \n\n\nSetup\n\n\nLike the display, make sure to select a flash size from the tools menu in the IDE, upload the firmware, and update the config.json file.  After a short time you should see that you are online.",
+            "title": "Door Bell"
+        },
+        {
+            "location": "/door/#the-door-bell-example",
+            "text": "For the door bell we are using a Wemos D1 Mini, a Button Shield, and a Buzzer shield. \nOptional (sorta), a Lipo Battery and Lipo charging shield. \nIf you were to deploy this for a real project you may want to choose a different power source, or batteries that are replacable.    The operation of the door bell is pretty simple, once setup, the door bell will connect to your MQTT broker, announce that it's online, and wait for the button to be pushed.    If all goes well, when you hit the button a message will be displayed on your LED matrix.    IF the batteries die, or power is removed, after a short time, the MQTT Broker will send the  last will and testament message, in this case it's \"Door Bell Off Line\".    We are still using the SPIFFS file system, and a config.json file, in this case the file is the same as for the display.  It works more or less the same way.    The host name is hard written in the code, this probably should be changed.",
+            "title": "The Door Bell Example"
+        },
+        {
+            "location": "/door/#setup",
+            "text": "Like the display, make sure to select a flash size from the tools menu in the IDE, upload the firmware, and update the config.json file.  After a short time you should see that you are online.",
+            "title": "Setup"
+        },
+        {
+            "location": "/firmware/",
+            "text": "Over The Air Firmware Updates\n\n\nSetting up SPIFFS on the D1 Mini is easy to do by following the step by step instructions found here:\n\n Information on setting up SPIFFS can be found here:\n\n\nVideo\n\n\nESP8266FS Plugin\n  \n\n\nYou do need to select a Flash Size in the Arduino IDE tools menu, this is important - because if you don't you could over write the flash area, and have to start again.\n\nThis could be a problem if you are updating a device in a remote location, or one that is hard to get to.  \n\n\nThe frist time you program your device, you'll also need to install the config.json file.\n\nOnce all that is done you can deploy, and do Over the Air updates easy from the Arduino IDE.  \n\n\nIf you look at the tools menu, and the port you should now see a new \"network\" port with the host name you set in the config.json file.  \n\n\nConfig File\n\n\nFor this project our conf.json file is pretty simple, but can be expanded as needed.  \n\n\n{\n    \"mqtt_server\":\"broker.hivemq.com\",\n    \"mqttname\":\"LeRoy\",\n    \"host\":\"LeRoyLEDMatrix\"\n}\n\n\n\n\nThis is a simple json formated file - you'll need three pieces of information.\n\na mqtt_server (broker) url, here we are using hivemq.com, but any broker should work,\n\nNext we see mqttname - and for some reason I'm calling my display \"LeRoy\"\n\nHere the mqttname take on a slightly different mean for the door bell sketch. For the door bell this is the name of the display we want to talk to.\n\nFinally we have a \"host\", this is the name of the device, this is also the name that shows up in the tools/port/network ports.\n\nFor the door bell, the host name is hard wired, time permitting we can make some changes to the sketches, and update the firmware ota.",
+            "title": "Updating Firmware"
+        },
+        {
+            "location": "/firmware/#over-the-air-firmware-updates",
+            "text": "Setting up SPIFFS on the D1 Mini is easy to do by following the step by step instructions found here: \n Information on setting up SPIFFS can be found here:  Video  ESP8266FS Plugin     You do need to select a Flash Size in the Arduino IDE tools menu, this is important - because if you don't you could over write the flash area, and have to start again. \nThis could be a problem if you are updating a device in a remote location, or one that is hard to get to.    The frist time you program your device, you'll also need to install the config.json file. \nOnce all that is done you can deploy, and do Over the Air updates easy from the Arduino IDE.    If you look at the tools menu, and the port you should now see a new \"network\" port with the host name you set in the config.json file.",
+            "title": "Over The Air Firmware Updates"
+        },
+        {
+            "location": "/firmware/#config-file",
+            "text": "For this project our conf.json file is pretty simple, but can be expanded as needed.    {\n    \"mqtt_server\":\"broker.hivemq.com\",\n    \"mqttname\":\"LeRoy\",\n    \"host\":\"LeRoyLEDMatrix\"\n}  This is a simple json formated file - you'll need three pieces of information. \na mqtt_server (broker) url, here we are using hivemq.com, but any broker should work, \nNext we see mqttname - and for some reason I'm calling my display \"LeRoy\" \nHere the mqttname take on a slightly different mean for the door bell sketch. For the door bell this is the name of the display we want to talk to. \nFinally we have a \"host\", this is the name of the device, this is also the name that shows up in the tools/port/network ports. \nFor the door bell, the host name is hard wired, time permitting we can make some changes to the sketches, and update the firmware ota.",
+            "title": "Config File"
+        }
+    ]
+}

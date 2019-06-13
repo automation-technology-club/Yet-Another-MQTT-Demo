@@ -1,0 +1,6 @@
+site_name: Yet Another MQTT Demo
+pages:
+- General Information: index.md
+- Door Bell: door.md
+- Updating Firmware: firmware.md
+
